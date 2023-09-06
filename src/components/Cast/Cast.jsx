@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { getCast } from 'services/API';
 import { List, Subtitle, Text, Title } from './Cast.styled';
 import image from '../../assets/images/profile.png';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
+  const posterUrl = 'https://image.tmdb.org/t/p/original/';
+
   useEffect(() => {
     const fetchCast = async () => {
       try {
@@ -42,11 +44,7 @@ export const Cast = () => {
       {actors.map(({ id, name, profile_path, character }) => (
         <li key={id}>
           <img
-            src={
-              profile_path
-                ? `https://image.tmdb.org/t/p/w200/${profile_path}`
-                : image
-            }
+            src={profile_path ? `${posterUrl}${profile_path}` : image}
             alt={name}
           />
           <div>
@@ -56,6 +54,9 @@ export const Cast = () => {
           </div>
         </li>
       ))}
+      <Toaster />
     </List>
   );
 };
+
+export default Cast;

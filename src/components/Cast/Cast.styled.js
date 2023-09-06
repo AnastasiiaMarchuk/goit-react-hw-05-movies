@@ -10,9 +10,17 @@ export const List = styled.ul`
   li {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 180px;
     background-color: var(--bg-components);
     box-shadow: var(--li-box-shadow);
+
+    @media (min-width: 768px) {
+      width: 210px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 250px;
+    }
   }
 
   img {
@@ -20,7 +28,10 @@ export const List = styled.ul`
   }
   div {
     ${commonWrapper}
-    height: 116px;
+    height: 98px;
+    @media (min-width: 768px) {
+      height: 116px;
+    }
   }
 `;
 

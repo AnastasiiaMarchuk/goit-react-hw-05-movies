@@ -1,4 +1,4 @@
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'services/API';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
@@ -6,7 +6,7 @@ import { Hero, Icon, StyledNavLink, Title } from './Home.styled';
 
 import { LoudMoreButton } from 'components/LoadMoreButton/LoudMoreButton';
 
-export const Home = () => {
+const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [more, setMore] = useState(true);
@@ -66,7 +66,10 @@ export const Home = () => {
         {trendingMovies.length > 0 && more && (
           <LoudMoreButton loadMore={handleLoadMore} />
         )}
+        <Toaster />
       </section>
     </>
   );
 };
+
+export default Home;

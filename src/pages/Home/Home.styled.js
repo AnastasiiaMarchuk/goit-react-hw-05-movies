@@ -7,7 +7,6 @@ export const Hero = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
   &::after {
     content: '';
     position: absolute;
@@ -18,30 +17,72 @@ export const Hero = styled.div`
     background-color: rgba(188, 188, 188, 0.6);
     filter: blur(1px);
   }
+  @media (min-width: 480px) {
+  }
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
 `;
 
 export const Title = styled.div`
-  padding: 150px 80px 50px;
+  padding: 60px 10px 10px;
+  @media (min-width: 480px) {
+  }
+
+  @media (min-width: 768px) {
+    padding: 100px 80px 50px;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 150px 80px 50px;
+  }
+
   h1 {
     color: var(--main-color);
   }
   span {
     display: flex;
-    margin-left: 80px;
-    font-size: 56px;
     color: var(--title-color);
     align-self: flex-end;
+    font-size: 36px;
+    @media (min-width: 480px) {
+    }
+
+    @media (min-width: 768px) {
+      font-size: 46px;
+    }
+
+    @media (min-width: 1200px) {
+      margin-left: 80px;
+      font-size: 56px;
+    }
   }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   align-self: flex-end;
-  width: 350px;
   transition: color var(--transition);
+
+  @media (min-width: 480px) {
+  }
+
+  @media (min-width: 768px) {
+    width: 350px;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 20px;
+  }
 
   &:hover,
   &:focus {

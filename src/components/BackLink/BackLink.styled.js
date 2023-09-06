@@ -3,14 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const StyledNavLink = styled(NavLink)`
-  transition: color 250ms ease;
+  transition: color var(--transition);
 
   &:hover,
   &:focus {
-    color: var(--accent-color);
-  }
-
-  &.active {
     color: var(--accent-color);
   }
 `;

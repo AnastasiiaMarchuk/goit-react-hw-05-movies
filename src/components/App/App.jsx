@@ -1,12 +1,21 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from '../../pages/Home/Home';
-import { Movies } from '../../pages/Movies/Movies';
-import { MainLayout } from 'layouts/MainLayout';
-import { MovieDetails } from '../../pages/MovieDetails/MovieDetails';
-import { Reviews } from '../Reviews/Reviews';
-import { Cast } from '../Cast/Cast';
 import { Background, Container } from './App.styled';
-import { Toaster } from 'react-hot-toast';
+import MainLayout from '../Layout/MainLayout';
+
+// import { Home } from '../../pages/Home/Home';
+// import { Movies } from '../../pages/Movies/Movies';
+// import { MovieDetails } from '../../pages/MovieDetails/MovieDetails';
+// import { Reviews } from '../Reviews/Reviews';
+// import { Cast } from '../Cast/Cast';
+
+const Home = lazy(() => import('../../pages/Home/Home'));
+const MovieDetails = lazy(() =>
+  import('../../pages/MovieDetails/MovieDetails')
+);
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
+const Reviews = lazy(() => import('../Reviews/Reviews'));
+const Cast = lazy(() => import('../Cast/Cast'));
 
 export const App = () => {
   return (
@@ -17,14 +26,13 @@ export const App = () => {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="movies" element={<Movies />} />
-            <Route path="/:movieId" element={<MovieDetails />}>
-              <Route path="*" element={<Home />} />
+            <Route path="movies/:movieId" element={<MovieDetails />}>
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews />} />
             </Route>
           </Route>
+          <Route path="*" element={<Home />} />
         </Routes>
-        <Toaster />
       </Container>
     </div>
   );

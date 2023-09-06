@@ -1,47 +1,41 @@
 import {
-  Box,
-  Description,
   IconMap,
   IconMovie,
   IconStar,
   Image,
-  Item,
-  List,
   Votes,
+  Wrapper,
 } from './MovieInfo.styled';
 import image from '../../assets/images/profile.png';
-import { Link } from 'react-router-dom';
 
 export const MovieInfo = ({ movieInfo }) => {
-  const { id, title, overview, poster, genres, country, votes } = movieInfo;
+  const { title, overview, poster, genres, country, votes } = movieInfo;
+  const posterUrl = 'https://image.tmdb.org/t/p/original/';
+
   return (
-    <Box>
-      <Link to={`/movies/${id}`} />
-      <Description>
+    <Wrapper>
+      <div>
         <h1>{title}</h1>
-        <List>
+        <ul>
           <Votes>
             <IconStar />
             {votes}
           </Votes>
-          <Item>
+          <li>
             <IconMovie />
             {genres}
-          </Item>
-          <Item>
+          </li>
+          <li>
             <IconMap />
             {country}
-          </Item>
-        </List>
+          </li>
+        </ul>
         <div>
           <h2>Overview</h2>
           <p> {overview} </p>
         </div>
-      </Description>
-      <Image
-        src={poster ? `https://image.tmdb.org/t/p/original/${poster}` : image}
-        alt={title}
-      />
-    </Box>
+      </div>
+      <Image src={poster ? `${posterUrl}${poster}` : image} alt={title} />
+    </Wrapper>
   );
 };

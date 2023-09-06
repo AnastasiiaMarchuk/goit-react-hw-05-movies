@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useState, useEffect, Suspense } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import { getMovieInfos } from 'services/API';
 import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import {
   IconPeople,
   IconReviews,
   Links,
-  Section,
   StyledNavLink,
 } from './MovieDetails.styled';
 import { BackLink } from '../../components/BackLink/BackLink';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState([]);
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     const fetchMovieInfo = async () => {
@@ -29,7 +30,6 @@ export const MovieDetails = () => {
           title: movie.title,
           overview: movie.overview,
           poster: movie.poster_path,
-          backdrop: movie.backdrop_path,
           votes: movie.vote_average.toFixed(1),
           genres: genres.join(' ◇ '),
           country: countries.join(' ◇ '),
@@ -55,9 +55,8 @@ export const MovieDetails = () => {
 
   return (
     <>
-      <Section>
-        <MovieInfo movieInfo={movieInfo} />
-      </Section>
+      <MovieInfo movieInfo={movieInfo} />
+
       <section>
         <Links>
           <div>
@@ -70,10 +69,15 @@ export const MovieDetails = () => {
               Reviews
             </StyledNavLink>
           </div>
-          <BackLink />
+          <BackLink to={backLinkHref || '/'} />
         </Links>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+        <Toaster />
       </section>
     </>
   );
 };
+
+export default MovieDetails;

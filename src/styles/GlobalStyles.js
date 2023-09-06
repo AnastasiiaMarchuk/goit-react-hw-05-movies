@@ -35,8 +35,19 @@ a {
 
 h1 {
   font-weight: 600;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 1.4;
+  
+  @media (min-width: 768px) {
+  font-size: 28px;
+ 
+  }
+  
+  @media (min-width: 1200px) {
+  font-size: 36px;
+ 
+
+  }
 }
   
 h2 {
@@ -55,8 +66,11 @@ h3 {
 
 p{
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
 }
 
 ul {

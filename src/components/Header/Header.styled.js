@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { commonContainerStyles } from 'styles/GlobalStyles';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.nav`
   box-shadow: var(--li-box-shadow);
   position: fixed;
   top: 0;
@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   box-shadow: var(--button-box-shadow);
 `;
 
-export const Container = styled.nav`
+export const Container = styled.ul`
   ${commonContainerStyles}
   display: flex;
   align-items: center;

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { getReviews } from 'services/API';
 import { Item, Subscript, Wrapper } from './Reviews.styled';
 import reviewsImg from '../../assets/images/reviews.png';
-export const Reviews = () => {
+
+const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -51,6 +52,9 @@ export const Reviews = () => {
           <p>No reviews for this movie</p>
         </Wrapper>
       )}
+      <Toaster />
     </ul>
   );
 };
+
+export default Reviews;

@@ -23,7 +23,7 @@ export const Section = styled.section`
   }
 `;
 
-export const Links = styled.div`
+export const Links = styled.ul`
   display: flex;
   justify-content: space-between;
   font-weight: 500;
@@ -48,8 +48,7 @@ export const IconReviews = styled(MdOutlineReviews)`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  transition: color 250ms ease;
-
+  transition: var(--transition);
   &:hover,
   &:focus {
     color: var(--accent-color);
