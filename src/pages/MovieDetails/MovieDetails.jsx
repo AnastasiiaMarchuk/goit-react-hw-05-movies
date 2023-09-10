@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { getMovieInfos } from 'services/API';
@@ -15,7 +15,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState([]);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     const fetchMovieInfo = async () => {
@@ -69,7 +69,7 @@ const MovieDetails = () => {
               Reviews
             </StyledNavLink>
           </div>
-          <BackLink to={backLinkHref || '/'} />
+          <BackLink to={backLinkHref.current} />
         </Links>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />

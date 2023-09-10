@@ -1,13 +1,7 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Background, Container } from './App.styled';
 import MainLayout from '../Layout/MainLayout';
-
-// import { Home } from '../../pages/Home/Home';
-// import { Movies } from '../../pages/Movies/Movies';
-// import { MovieDetails } from '../../pages/MovieDetails/MovieDetails';
-// import { Reviews } from '../Reviews/Reviews';
-// import { Cast } from '../Cast/Cast';
 
 const Home = lazy(() => import('../../pages/Home/Home'));
 const MovieDetails = lazy(() =>
@@ -31,7 +25,7 @@ export const App = () => {
               <Route path="reviews" element={<Reviews />} />
             </Route>
           </Route>
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Container>
     </div>
